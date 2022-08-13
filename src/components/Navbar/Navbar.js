@@ -1,9 +1,17 @@
 import React from 'react'
-import { propTypes } from 'react-bootstrap/esm/Image'
+import { useNavigate } from "react-router"
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar(props) {
+    
+    const navigate = useNavigate();
+
+    const handleLogOutRedirect = () => {
+        props.handleLogOut()
+        navigate('/')
+    }
+
     return (
         <div className="navbar">
             <div className="container nav-container">
@@ -27,7 +35,7 @@ export default function Navbar(props) {
                         <></>
                     }
                     {props.user ?
-                        <li><button onClick={props.handleLogOut}>Logout</button></li>
+                        <li><button onClick={handleLogOutRedirect}>Logout</button></li>
                         :
                         <li><Link to='/login'>Login/Signup</Link></li>
                     }

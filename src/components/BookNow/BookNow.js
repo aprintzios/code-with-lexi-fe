@@ -31,7 +31,7 @@ export default function BookNow(props) {
 
     useEffect(() => {
       async function fetchSessions() {
-          let res = await axios.get("/api/sessions");
+          let res = await axios.get("/api/sessions/available");
           setSessions(await res.data);
       }
       fetchSessions();
