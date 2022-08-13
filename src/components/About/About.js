@@ -9,7 +9,7 @@ export default function About(props) {
             </div>
             <div id="rightAbout" style={{ backgroundColor: props.bgColor }}>
                 <img src={props.content}></img>
-                <button class="button-13" role="button"> Book Now </button>
+                <button className="button-13" role="button"> Book Now </button>
             </div>
         </div>
     )

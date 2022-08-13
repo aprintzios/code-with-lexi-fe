@@ -9,7 +9,7 @@ export default function InfoRight(props) {
             </div>
             <div id="rightInfoR" style={{ backgroundColor: props.bgColor }}>
                 <img src={props.content}></img>
-                <button class="button-13" role="button"> {props.btn} </button>
+                <button className="button-13" role="button"> {props.btn} </button>
             </div>
         </div>
     )
