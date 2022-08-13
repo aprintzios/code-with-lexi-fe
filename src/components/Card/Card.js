@@ -13,7 +13,7 @@ export default function Card(props) {
                     })}
                 </ul>
             </div>
-            <div id="cardButton"> <button class="button-13" role="button"> Learn More </button>
+            <div id="cardButton"> <button className="button-13" role="button"> Learn More </button>
             </div>
         </div>
     )

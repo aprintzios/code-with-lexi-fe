@@ -17,9 +17,11 @@ export default function Login(props) {
   }
 
   const loginHandler = async () => {
-    const res = await axios.post('/users/login', user)
+    const res = await axios.post('/api/users/login', user)
     if (res) {
       props.setUserInState(user)
+      let token = res.data;
+      localStorage.setItem('token', token);  
       navigate("/")
     } else {
       props.setMessage("Bad Credentials - Try Again")
@@ -33,7 +35,7 @@ export default function Login(props) {
         <Form.Group>
           <Form.Label>Email Address: </Form.Label>
           <Form.Control
-            name="emailAddress"
+            name="email"
             onChange={changeHandler}
           ></Form.Control>
         </Form.Group>
@@ -45,7 +47,7 @@ export default function Login(props) {
             onChange={changeHandler}
           ></Form.Control>
         </Form.Group>
-        <button class="button-13" onClick={loginHandler} role="button"> Login </button>
+        <button className="button-13" onClick={loginHandler} role="button"> Login </button>
 
         <h4>{props.message}</h4>
         </div>

@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
 import axios from "axios"
-import "./Signup.css"
+import "./BookNow.css"
 
-export default function Signup(props) {
+export default function BookNow(props) {
 
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Signup(props) {
         setUser(temp);
     };
 
-    const signupHandler = async () => {
+    const bookNowHandler = async () => {
         props.setUserInState(user)
         await axios.post("/api/users/signup", user)
         navigate("/")
@@ -27,30 +27,23 @@ export default function Signup(props) {
                 <img src="compLeft.png" alt="" />
             </div>
                 <div id='formWrapper'>
-                    <img src="signup.png"></img>
                     <Form.Group>
-                        <Form.Label>Name: </Form.Label>
+                        <Form.Label>Date: </Form.Label>
                         <Form.Control
-                            name="name"
+                            name="date"
+                            type="date"
                             onChange={changeHandler}
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Email Address: </Form.Label>
+                        <Form.Label>Time: </Form.Label>
                         <Form.Control
-                            name="email"
+                            name="time"
+                            type="time"
                             onChange={changeHandler}
                         ></Form.Control>
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password: </Form.Label>
-                        <Form.Control
-                            name="password"
-                            type="password"
-                            onChange={changeHandler}
-                        ></Form.Control>
-                    </Form.Group>
-                    <button className="button-13" onClick={signupHandler} role="button"> Register </button>
+                    <button className="button-13" onClick={bookNowHandler} role="button"> Book </button>
 
                 </div>
         </div>
