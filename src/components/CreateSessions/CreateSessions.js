@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
 import axios from "axios"
@@ -7,6 +7,9 @@ import "./CreateSessions.css"
 export default function CreateSessions(props) {
 
     const [data, setData] = useState(null);
+    const [bookedSessions, setBookedSessions] = useState([]);
+    const [availableSessions, setAvailableSessions] = useState([]);
+    const [submit, setSubmit] = useState(false);
     const navigate = useNavigate();
 
     const changeHandler = (e) => {
@@ -17,8 +20,25 @@ export default function CreateSessions(props) {
 
     const createSessionsHandler = async () => {
         await axios.post("/api/sessions/create", data)
+        setSubmit(!submit)
         navigate("/createSessions")
     }
+
+    const handleDeleteSession = async (e) => {
+        let jwt = localStorage.getItem('token')
+        await axios.delete(`/api/sessions/delete?sessionId=${e.target.value}&token=${jwt}`)
+        setSubmit(!submit)
+    }
+
+    useEffect(() => {
+        async function fetchSessions() {
+            let resBooked = await axios.get("/api/sessions/booked");
+            let resAvailable = await axios.get("/api/sessions/available");
+            setBookedSessions(await resBooked.data);
+            setAvailableSessions(await resAvailable.data);
+        }
+        fetchSessions();
+    }, [submit])
 
     return (
         <div className="signup">
@@ -59,6 +79,13 @@ export default function CreateSessions(props) {
                         ></Form.Control>
                     </Form.Group>
                     <button className="button-13" onClick={createSessionsHandler} role="button"> Create Session </button>
+                </div>
+
+                <div>
+                    <h1>Available Sessions</h1>
+                        {availableSessions.map(session => <li key={session._id}>{session.date.substring(0,10)} {session.time} <button value={session._id} onClick={handleDeleteSession}>Delete Session</button></li>)}
+                    <h1>Booked Sessions</h1>
+                        {bookedSessions.map(session => <li key={session._id}>{session.date.substring(0,10)} {session.time}</li>)}
                 </div>
         </div>
     );

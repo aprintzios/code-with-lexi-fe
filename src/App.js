@@ -47,7 +47,7 @@ export default class App extends React.Component {
         token = null;
       } else { // token not expired! our user is still 'logged in'. Put them into state.
         let userDoc = payload.user // grab user details from token
-        console.log("payload.user", payload.user);
+        // console.log("payload.user", payload.user);
         this.setState({ user: userDoc })
       }
     }

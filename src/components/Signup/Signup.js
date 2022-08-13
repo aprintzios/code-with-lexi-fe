@@ -17,8 +17,15 @@ export default function Signup(props) {
 
     const signupHandler = async () => {
         props.setUserInState(user)
-        await axios.post("/api/users/signup", user)
-        navigate("/")
+        const res = await axios.post("/api/users/signup", user)
+        if (res) {
+            props.setUserInState(user)
+            let token = res.data;
+            localStorage.setItem('token', token);  
+            navigate("/")
+          } else {
+            props.setMessage("Bad Credentials - Try Again")
+          }
     }
 
     return (
