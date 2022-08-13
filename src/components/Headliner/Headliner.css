@@ -1,0 +1,41 @@
+.headliner{
+    height: 100vh;
+    background-image: url("../../../public/background.png");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+/* mobile */
+@media only screen and (max-width: 768px) {
+    .headliner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;   
+ }
+    .left-headliner{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .right-headliner{
+        display: none;
+    }
+}
+
+/* desktop */
+@media only screen and (min-width: 768px) {
+    .headliner {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .left-headliner{
+        display: flex;
+        align-items: center;
+    }
+    .right-headliner{
+        display: flex;
+        align-items: center;
+    }
+}
