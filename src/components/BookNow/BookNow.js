@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
 import axios from "axios"
@@ -6,20 +6,36 @@ import "./BookNow.css"
 
 export default function BookNow(props) {
 
-    const [user, setUser] = useState(null);
+    const [chosenSessionId, setChosenSessionId] = useState(null);
+    const [sessions, setSessions] = useState([]);
     const navigate = useNavigate();
 
     const changeHandler = (e) => {
-        let temp = { ...user };
-        temp[e.target.name] = e.target.value;
-        setUser(temp);
+
+        setChosenSessionId(e.target.value)
     };
 
     const bookNowHandler = async () => {
-        props.setUserInState(user)
-        await axios.post("/api/users/signup", user)
-        navigate("/")
+        let jwt = localStorage.getItem('token')
+        await axios.put("/api/sessions/update", {
+          token: jwt,
+          sessionId: chosenSessionId
+      })
+        // await fetch("/api/sessions/update", {
+        //   method: "PUT",
+        //   headers: {"Content-Type": "application/json",'Authorization': 'Bearer ' + jwt}, 
+        //   body: chosenSessionId
+        // })
+        // navigate("/")
     }
+
+    useEffect(() => {
+      async function fetchSessions() {
+          let res = await axios.get("/api/sessions");
+          setSessions(await res.data);
+      }
+      fetchSessions();
+    }, [])
 
     return (
         <div className="signup">
@@ -27,7 +43,7 @@ export default function BookNow(props) {
                 <img src="compLeft.png" alt="" />
             </div>
                 <div id='formWrapper'>
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Date: </Form.Label>
                         <Form.Control
                             name="date"
@@ -42,9 +58,11 @@ export default function BookNow(props) {
                             type="time"
                             onChange={changeHandler}
                         ></Form.Control>
-                    </Form.Group>
-                    <button className="button-13" onClick={bookNowHandler} role="button"> Book </button>
-
+                    </Form.Group> */}
+                  <div>
+                    <select onChange={changeHandler} >{sessions.map(session => <option key={session._id} value={session._id}>{session.date.substring(0,10)} {session.time}</option>)}</select>
+                  </div>
+                  <button className="button-13" onClick={bookNowHandler} role="button"> Book </button>
                 </div>
         </div>
     );
