@@ -1,9 +1,9 @@
 import React from 'react'
 import Card from '../Card/Card';
 import './Tutoring.css'
-import feTitle from '../../feTitle.png'
-import beTitle from '../../beTitle.png'
-import csTitle from '../../csTitle.png'
+import feTitle from '../../images/feTitle.png'
+import beTitle from '../../images/beTitle.png'
+import csTitle from '../../images/csTitle.png'
 
 export default function Tutoring() {
     let fePoints = ['HTML', 'CSS', 'JavaScript', 'React'];

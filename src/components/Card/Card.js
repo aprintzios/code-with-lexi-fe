@@ -3,7 +3,7 @@ import './Card.css'
 
 export default function Card(props) {
     return (
-        <div className="card" style={{backgroundColor: props.bgColor }}>
+        <div className="card" style={{ backgroundColor: props.bgColor }}>
             <div id="cardTitle"> <img src={props.title}></img>  </div>
 
             <div id="cardPoints">
@@ -14,7 +14,7 @@ export default function Card(props) {
                 </ul>
             </div>
             <div id="cardButton"> <button class="button-13" role="button"> Learn More </button>
- </div>
+            </div>
         </div>
     )
 }
