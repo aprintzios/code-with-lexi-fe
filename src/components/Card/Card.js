@@ -1,5 +1,7 @@
 import React from 'react'
 import './Card.css'
+import { Link } from "react-scroll";
+
 
 export default function Card(props) {
     return (
@@ -13,7 +15,8 @@ export default function Card(props) {
                     })}
                 </ul>
             </div>
-            <div id="cardButton"> <button className="button-13" role="button"> Learn More </button>
+            <div id="cardButton"> 
+            <Link to={props.btnLink} smooth={true} duration={500}> <button className="button-13" role="button"> Learn More </button> </Link>
             </div>
         </div>
     )

@@ -12,9 +12,9 @@ export default function Tutoring() {
 
   return (
     <div className="tutoring">
-        <div><Card title={feTitle} points={fePoints} bgColor={'#E7F0FF'}/></div>
-        <div><Card title={beTitle} points={bePoints} bgColor={'#CEEFEE'}/></div>
-        <div><Card title={csTitle} points={csPoints} bgColor={'#E4FAF8'}/></div>
+        <div><Card title={feTitle} points={fePoints} bgColor={'#E7F0FF'} btnLink={'feInfo'}/></div>
+        <div><Card title={beTitle} points={bePoints} bgColor={'#CEEFEE'} btnLink={'beInfo'}/></div>
+        <div><Card title={csTitle} points={csPoints} bgColor={'#E4FAF8'} btnLink={'csInfo'}/></div>
     </div>
   )
 }

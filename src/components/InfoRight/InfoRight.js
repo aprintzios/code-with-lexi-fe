@@ -3,7 +3,7 @@ import './InfoRight.css'
 
 export default function InfoRight(props) {
     return (
-        <div className="info">
+        <div id={props.id} className="info">
             <div id="leftInfoR">
                 <img src={props.pic}></img>
             </div>
