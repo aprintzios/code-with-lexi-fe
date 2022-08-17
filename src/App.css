@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.react-calendar__month-view__days__day--weekend {  
+  color: black;
+}
+
+div.react-calendar__month-view__days{
+  color: black;
+
+}

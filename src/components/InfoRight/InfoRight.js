@@ -1,6 +1,6 @@
 import React from 'react'
 import './InfoRight.css'
-
+import {Link} from 'react-router-dom'
 export default function InfoRight(props) {
     return (
         <div id={props.id} className="info">
@@ -9,7 +9,7 @@ export default function InfoRight(props) {
             </div>
             <div id="rightInfoR" style={{ backgroundColor: props.bgColor }}>
                 <img src={props.content}></img>
-                <button className="button-13" role="button"> {props.btn} </button>
+                <Link to='/book'><button className="button-13" role="button"> Book Now </button></Link>
             </div>
         </div>
     )
