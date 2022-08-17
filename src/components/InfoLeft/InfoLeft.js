@@ -3,7 +3,7 @@ import './InfoLeft.css'
 
 export default function InfoLeft(props) {
     return (
-        <div className="info">
+        <div id={props.id} className="info">
             <div id="leftInfo">
                 <img src={props.content}></img>
                 <button className="button-13" role="button"> Book Now </button>

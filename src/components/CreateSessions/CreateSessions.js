@@ -78,7 +78,7 @@ export default function CreateSessions(props) {
                             onChange={changeHandler}
                         ></Form.Control>
                     </Form.Group>
-                    <button className="button-13" onClick={createSessionsHandler} role="button"> Create Session </button>
+                    <button className="button-13" onClick={createSessionsHandler} role="button"> Create Sessions </button>
                 </div>
 
                 <div>

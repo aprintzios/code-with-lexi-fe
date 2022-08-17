@@ -65,17 +65,17 @@ export default class App extends React.Component {
           <Route path='/' element={
             <div className='main-container'>
               <Headliner />
-              <Tutoring />
-              <InfoLeft pic={feInfo} content={feContent} />
-              <InfoRight pic={beInfo} content={beContent} btn={'Book Now'} />
-              <InfoLeft pic={csInfo} content={csContent} />
-              <About pic={aboutPic} content={aboutContent} btn={'Contact Me'} bgColor={'#FAE6FF'} />
+              <Tutoring id='tutoring'/>
+              <InfoLeft id={'feInfo'} pic={feInfo} content={feContent} />
+              <InfoRight id={'beInfo'} pic={beInfo} content={beContent} btn={'Book Now'} />
+              <InfoLeft id={'csInfo'} pic={csInfo} content={csContent} />
+              <About id='about' pic={aboutPic} content={aboutContent} btn={'Contact Me'} bgColor={'#FAE6FF'} />
               {/* <About pic={aboutPic} content={aboutContent}/> */}
             </div>
           } />
 
           < Route path='/book' element={
-            <BookNow />
+            <BookNow id='book' />
           } />
 
           {this.state.user && this.state.user.isAdmin ? 
