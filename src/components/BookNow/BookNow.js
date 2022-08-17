@@ -42,9 +42,13 @@ export default function BookNow(props) {
 
     return (
         <div className="bookNow">
-            <div>
-            <Calendar onChange={setDate} value={date}/>
-            {date.toString()}
+            <div id="calWrapper">
+                <div>
+                    <Calendar onChange={setDate} value={date} />
+                </div>
+                <div>
+                    time section
+                </div>
             </div>
             <div>
                 <input type='hidden' id="sessions" value={JSON.stringify(sessions)} />
