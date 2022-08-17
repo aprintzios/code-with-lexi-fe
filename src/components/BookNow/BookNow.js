@@ -3,11 +3,14 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
 import axios from "axios"
 import "./BookNow.css"
+import Calendar from "react-calendar"
+import "react-calendar/dist/Calendar.css"
 
 export default function BookNow(props) {
 
     const [chosenSessionId, setChosenSessionId] = useState(null);
     const [sessions, setSessions] = useState([]);
+    const [date, setDate] = useState(new Date());
     const navigate = useNavigate();
 
     const changeHandler = (e) => {
@@ -18,9 +21,9 @@ export default function BookNow(props) {
     const bookNowHandler = async () => {
         let jwt = localStorage.getItem('token')
         await axios.put("/api/sessions/update", {
-          token: jwt,
-          sessionId: chosenSessionId
-      })
+            token: jwt,
+            sessionId: chosenSessionId
+        })
         // await fetch("/api/sessions/update", {
         //   method: "PUT",
         //   headers: {"Content-Type": "application/json",'Authorization': 'Bearer ' + jwt}, 
@@ -30,40 +33,24 @@ export default function BookNow(props) {
     }
 
     useEffect(() => {
-      async function fetchSessions() {
-          let res = await axios.get("/api/sessions/available");
-          setSessions(await res.data);
-      }
-      fetchSessions();
+        async function fetchSessions() {
+            let res = await axios.get("/api/sessions/available");
+            setSessions(await res.data);
+        }
+        fetchSessions();
     }, [])
 
     return (
-        <div className="signup">
-            <div className="signupImg">
-                <img src="compLeft.png" alt="" />
+        <div className="bookNow">
+            <div>
+            <Calendar onChange={setDate} value={date}/>
+            {date.toString()}
             </div>
-                <div id='formWrapper'>
-                    {/* <Form.Group>
-                        <Form.Label>Date: </Form.Label>
-                        <Form.Control
-                            name="date"
-                            type="date"
-                            onChange={changeHandler}
-                        ></Form.Control>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Time: </Form.Label>
-                        <Form.Control
-                            name="time"
-                            type="time"
-                            onChange={changeHandler}
-                        ></Form.Control>
-                    </Form.Group> */}
-                  <div>
-                    <select onChange={changeHandler} >{sessions.map(session => <option key={session._id} value={session._id}>{session.date.substring(0,10)} {session.time}</option>)}</select>
-                  </div>
-                  <button className="button-13" onClick={bookNowHandler} role="button"> Book </button>
-                </div>
+            <div>
+                <input type='hidden' id="sessions" value={JSON.stringify(sessions)} />
+                <select onChange={changeHandler} >{sessions.map(session => <option key={session._id} value={session._id}>{session.date.substring(0, 10)} {session.time}</option>)}</select>
+            </div>
+            <button className="button-13" onClick={bookNowHandler} role="button"> Book </button>
         </div>
     );
 }
