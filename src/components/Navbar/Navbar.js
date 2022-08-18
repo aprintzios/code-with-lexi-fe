@@ -42,7 +42,8 @@ export default function Navbar(props) {
                         <></>
                     }
                     {props.user ?
-                        <li><button onClick={handleLogOutRedirect}>Logout</button></li>
+                        // <li><button onClick={handleLogOutRedirect}>Logout</button></li>
+                        <li><Link onClick={handleLogOutRedirect} to='/'>Logout</Link></li>
                         :
                         <li><Link to='/login'>Login/Signup</Link></li>
                     }

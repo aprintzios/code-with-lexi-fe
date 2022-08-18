@@ -18,11 +18,11 @@ export default function BookNow(props) {
         setChosenSessionId(e.target.value)
     };
 
-    const bookNowHandler = async () => {
+    const bookNowHandler = async (e) => {
         let jwt = localStorage.getItem('token')
         await axios.put("/api/sessions/update", {
             token: jwt,
-            sessionId: chosenSessionId
+            session: e.target.value
         })
         // await fetch("/api/sessions/update", {
         //   method: "PUT",
@@ -42,19 +42,23 @@ export default function BookNow(props) {
 
     return (
         <div className="bookNow">
+            <div id="loader"></div>
             <div id="calWrapper">
-                <div>
-                    <Calendar onChange={setDate} value={date} />
+                <div id="calDiv">
+                    <div id="calendar"><Calendar onChange={setDate} value={date} /></div>
+                    <input id="calendar-value" type="hidden" value={date}/>
                 </div>
-                <div>
+                <div id="timeDiv">
                     time section
                 </div>
-            </div>
-            <div>
+                <div>
+                <button id="bookNowBtn" className="button-13" onClick={bookNowHandler} role="button"> Book </button>
+                </div>
+                <div>
                 <input type='hidden' id="sessions" value={JSON.stringify(sessions)} />
-                <select onChange={changeHandler} >{sessions.map(session => <option key={session._id} value={session._id}>{session.date.substring(0, 10)} {session.time}</option>)}</select>
+                {/* <select onChange={changeHandler} >{sessions.map(session => <option key={session._id} value={session._id}>{session.date.substring(0, 10)} {session.time}</option>)}</select> */}
             </div>
-            <button className="button-13" onClick={bookNowHandler} role="button"> Book </button>
+            </div>
         </div>
     );
 }

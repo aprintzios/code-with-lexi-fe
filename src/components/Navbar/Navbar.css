@@ -109,9 +109,9 @@ body {
 .navbar .menu-items {
     padding-top: 120px;
     box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-    height: 60vh;
-    width: 100%;
-    transform: translate(-150%);
+    /* height: 60vh; */
+    /* width: 100%; */
+    transform: translateY(-150%);
     display: flex;
     flex-direction: column;
     margin-left: -80px;
