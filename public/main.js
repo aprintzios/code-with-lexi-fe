@@ -29,6 +29,7 @@ setTimeout(() => {
     navArrows = [...navArrows]
     console.log(navArrows)
     navArrows.forEach(arrow => arrow.addEventListener('click', () => {
+        timeDiv.innerHTML = ""
         resetStyle();
         loaderStyle();
         styleCalendar();
