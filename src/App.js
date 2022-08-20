@@ -9,6 +9,7 @@ import InfoRight from './components/InfoRight/InfoRight';
 import About from './components/About/About';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import { Protected } from './components/Protected/Protected';
 
 //images
 import feInfo from './images/feInfo.png'
@@ -21,21 +22,22 @@ import aboutPic from './images/aboutPic.png'
 import aboutContent from './images/aboutContent.png'
 import React from 'react';
 import BookNow from './components/BookNow/BookNow';
-import CreateSessions from './components/CreateSessions/CreateSessions';
+import ManageSessions from './components/ManageSessions/ManageSessions';
 
 export default class App extends React.Component {
 
   state = {
     user: null,
+    isLoggedIn: false
   }
 
   setUserInState = (incomingUserData) => {
-    this.setState({ user: incomingUserData })
+    this.setState({ user: incomingUserData, isLoggedIn: true })
   }
 
   handleLogOut = () => {
     localStorage.removeItem('token')
-    this.setState({ user: null })
+    this.setState({ user: null, isLoggedIn: false })
   }
 
   grabUserData = () => {
@@ -45,10 +47,10 @@ export default class App extends React.Component {
       if (payload.exp < Date.now() / 1000) {  // Check if our token is expired, and remove if it is (standard/boilerplate)
         localStorage.removeItem('token');
         token = null;
+        this.setState({ user: null, isLoggedIn: false })
       } else { // token not expired! our user is still 'logged in'. Put them into state.
         let userDoc = payload.user // grab user details from token
-        // console.log("payload.user", payload.user);
-        this.setState({ user: userDoc })
+        this.setState({ user: userDoc, isLoggedIn: true })
       }
     }
   }
@@ -66,21 +68,23 @@ export default class App extends React.Component {
             <div className='main-container'>
               <Headliner />
               <Tutoring id='tutoring'/>
-              <InfoLeft id={'feInfo'} pic={feInfo} content={feContent} />
-              <InfoRight id={'beInfo'} pic={beInfo} content={beContent} btn={'Book Now'} />
-              <InfoLeft id={'csInfo'} pic={csInfo} content={csContent} />
-              <About id='about' pic={aboutPic} content={aboutContent} btn={'Contact Me'} bgColor={'#FAE6FF'} />
+              <InfoLeft id={'feInfo'} pic={feInfo} user={this.state.user} content={feContent} />
+              <InfoRight id={'beInfo'} pic={beInfo} user={this.state.user} content={beContent} btn={'Book Now'} />
+              <InfoLeft id={'csInfo'} pic={csInfo} user={this.state.user} content={csContent} />
+              <About id='about' pic={aboutPic} content={aboutContent} user={this.state.user} btn={'Contact Me'} bgColor={'#FAE6FF'} />
               {/* <About pic={aboutPic} content={aboutContent}/> */}
             </div>
           } />
 
           < Route path='/book' element={
-            <BookNow id='book' />
+             <Protected isLoggedIn={this.state.isLoggedIn}>
+                <BookNow user={this.state.user} id='book' />
+             </Protected>
           } />
 
           {this.state.user && this.state.user.isAdmin ? 
-            <Route path='/createSessions' element={
-              <CreateSessions/>
+            <Route path='/manage' element={
+              <ManageSessions/>
             }/>
             :
             <></>
@@ -99,7 +103,7 @@ export default class App extends React.Component {
             </>
           }
         </Routes>
-
+          <input type="hidden" value={this.state.isLoggedIn} id="isLoggedIn"/>
       </div>
     );
   }

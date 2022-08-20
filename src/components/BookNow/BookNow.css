@@ -1,17 +1,28 @@
-/* .react-calendar__month-view__days__day--weekend {
-    color: black;
-  } */
-
 #calWrapper{
   display: none;
   justify-content: center;
   gap: 10vw;
   margin-top: 12vh;
+  margin-left: 22vw;
+  margin-right: 22vw;
 }
 
 #calDiv, #timeDiv{
   width: 30vw;
-  /* background-color: pink; */
+}
+
+#timeDiv div {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  color: magenta
+}
+
+#timeDiv div:hover {
+  background-color: pink;
+  color: black;
+  cursor: pointer;
 }
 
 #calDiv {
@@ -19,18 +30,17 @@
   justify-content: end;
 }
 
-#loader {
-  display: block;
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid pink; /* Pink */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  margin: 25vh auto;
-  animation: spin 2s linear infinite;
+.bookNow {
+  display: flex;
+  flex-direction: column;
+  gap: 12vh;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+#bookBtnDiv {
+  display: none;
+}
+
+#bookNowBtn {
+  color: magenta;
+  text-align: center;
 }
