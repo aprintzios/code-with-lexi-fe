@@ -1,4 +1,4 @@
-const scriptAxios = document.createElement('script')
+scriptAxios = document.createElement('script')
 scriptAxios.src = "https://unpkg.com/axios/dist/axios.min.js"
 document.body.appendChild(scriptAxios)
 
@@ -79,7 +79,6 @@ function renderTimes(calendarObj, selectedDate) {
                 bookedTimeDiv.appendChild(timeChildDiv)
             }
             else {
-                console.log("in else")
                 timeChildDiv.style.backgroundColor = "white"
                 timeChildDiv.style.color = "magenta"
                 timeChildDiv.id = session._id

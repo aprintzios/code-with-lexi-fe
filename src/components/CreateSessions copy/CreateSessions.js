@@ -21,7 +21,7 @@ export default function CreateSessions(props) {
     const createSessionsHandler = async () => {
         await axios.post("/api/sessions/create", data)
         setSubmit(!submit)
-        navigate("/createSessions")
+        navigate("/manage")
     }
 
     const handleDeleteSession = async (e) => {
