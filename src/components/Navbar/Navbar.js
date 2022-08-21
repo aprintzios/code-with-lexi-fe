@@ -57,7 +57,10 @@ export default function Navbar(props) {
                         <li><Link onClick={closeMenu} to='/login'>Book Now</Link></li>
                     }
                     {props.user && props.user.isAdmin ?
-                        <li><Link onClick={closeMenu} to='/manage'>Manage Sessions</Link></li>
+                        <>
+                            <li><Link onClick={closeMenu} to='/manage'>Manage Sessions</Link></li>
+                            <li><Link onClick={closeMenu} to='/create'>Create Sessions</Link></li>
+                        </>
                         :
                         <></>
                     }

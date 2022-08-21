@@ -23,6 +23,7 @@ import aboutContent from './images/aboutContent.png'
 import React from 'react';
 import BookNow from './components/BookNow/BookNow';
 import ManageSessions from './components/ManageSessions/ManageSessions';
+import CreateSessions from './components/CreateSessions/CreateSessions';
 
 export default class App extends React.Component {
 
@@ -72,7 +73,6 @@ export default class App extends React.Component {
               <InfoRight id={'beInfo'} pic={beInfo} user={this.state.user} content={beContent} btn={'Book Now'} />
               <InfoLeft id={'csInfo'} pic={csInfo} user={this.state.user} content={csContent} />
               <About id='about' pic={aboutPic} content={aboutContent} user={this.state.user} btn={'Contact Me'} bgColor={'#FAE6FF'} />
-              {/* <About pic={aboutPic} content={aboutContent}/> */}
             </div>
           } />
 
@@ -83,9 +83,18 @@ export default class App extends React.Component {
           } />
 
           {this.state.user && this.state.user.isAdmin ? 
-            <Route path='/manage' element={
-              <ManageSessions/>
-            }/>
+            <>    
+              <Route path='/manage' element={
+                <Protected isLoggedIn={this.state.isLoggedIn}>
+                  <ManageSessions/>
+                </Protected>
+              }/>
+              <Route path='/create' element={
+                <Protected isLoggedIn={this.state.isLoggedIn}>
+                  <CreateSessions/>
+                </Protected>
+              }/>
+            </>
             :
             <></>
   }

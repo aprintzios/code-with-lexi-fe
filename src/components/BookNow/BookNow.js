@@ -9,7 +9,7 @@ export default function BookNow(props) {
     const [date, setDate] = useState(new Date());
 
     const bookNowHandler = async (e) => {
-        let jwt = localStorage.getItem('token')
+        const jwt = localStorage.getItem('token')
         await axios.put("/api/sessions/update", {
             token: jwt,
             session: e.target.value
