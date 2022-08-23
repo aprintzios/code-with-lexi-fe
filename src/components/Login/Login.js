@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
 import './Login.css'
+import {Link} from "react-router-dom"
 
 export default function Login(props) {
   
@@ -16,7 +17,8 @@ export default function Login(props) {
     setUser(temp)
   }
 
-  const loginHandler = async () => {
+  const loginHandler = async (e) => {
+    e.preventDefault()
     const res = await axios.post('/api/users/login', user)
     if (res) {
       props.setUserInState(user)
@@ -32,24 +34,27 @@ export default function Login(props) {
     <div className="login">
       <div id='formWrapper'>
         <img src="login.png"></img>
-        <Form.Group>
-          <Form.Label>Email Address: </Form.Label>
-          <Form.Control
-            name="email"
-            onChange={changeHandler}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password: </Form.Label>
-          <Form.Control
-            name="password"
-            type="password"
-            onChange={changeHandler}
-          ></Form.Control>
-        </Form.Group>
-        <button className="button-13" onClick={loginHandler} role="button"> Login </button>
+        <form onSubmit={loginHandler}>
+          <Form.Group>
+            <Form.Label>Email Address: </Form.Label>
+            <Form.Control
+              name="email"
+              onChange={changeHandler}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password: </Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              onChange={changeHandler}
+            ></Form.Control>
+          <button className="button-13" role="button"> Login </button>
+          </Form.Group>
+        </form>
 
-        <h4>{props.message}</h4>
+        {/* <h4>{props.message}</h4> */}
+        <div>Need an account? <Link to="/signup">Sign up</Link></div>
         </div>
       <div className="loginImg">
         <img src="compRight.png" alt="" />

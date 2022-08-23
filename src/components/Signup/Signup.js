@@ -3,6 +3,7 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
 import axios from "axios"
 import "./Signup.css"
+import {Link} from "react-router-dom"
 
 export default function Signup(props) {
 
@@ -15,7 +16,8 @@ export default function Signup(props) {
         setUser(temp);
     };
 
-    const signupHandler = async () => {
+    const signupHandler = async (e) => {
+        e.preventDefault()
         props.setUserInState(user)
         const res = await axios.post("/api/users/signup", user)
         if (res) {
@@ -35,30 +37,33 @@ export default function Signup(props) {
             </div>
                 <div id='formWrapper'>
                     <img src="signup.png"></img>
-                    <Form.Group>
-                        <Form.Label>Name: </Form.Label>
-                        <Form.Control
-                            name="name"
-                            onChange={changeHandler}
-                        ></Form.Control>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Email Address: </Form.Label>
-                        <Form.Control
-                            name="email"
-                            onChange={changeHandler}
-                        ></Form.Control>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password: </Form.Label>
-                        <Form.Control
-                            name="password"
-                            type="password"
-                            onChange={changeHandler}
-                        ></Form.Control>
-                    </Form.Group>
-                    <button className="button-13" onClick={signupHandler} role="button"> Register </button>
-
+                    <form onSubmit={signupHandler}>
+                        <Form.Group>
+                            <Form.Label>Name: </Form.Label>
+                            <Form.Control
+                                name="name"
+                                onChange={changeHandler}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Email Address: </Form.Label>
+                            <Form.Control
+                                name="email"
+                                onChange={changeHandler}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Password: </Form.Label>
+                            <Form.Control
+                                name="password"
+                                type="password"
+                                onChange={changeHandler}
+                            ></Form.Control>
+                        </Form.Group>
+                        <button className="button-13" role="button"> Register </button>
+                    </form>
+                    {/* <button className="button-13" onClick={signupHandler} role="button"> Register </button> */}
+                    <div>Already have an account? <Link to="/login">Login</Link></div>
                 </div>
         </div>
     );

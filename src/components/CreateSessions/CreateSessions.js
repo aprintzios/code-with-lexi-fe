@@ -10,13 +10,21 @@ export default function CreateSessions(props) {
         await axios.post("/api/sessions/create", {sessions: e.target.value})
     }
 
-    useEffect(() => {
-        Array.from(document.getElementsByTagName('script')).forEach(elem => elem.remove())
+    const AttachScript = (scriptName) => {
         const script = document.createElement("script")
-        script.src = "create-sessions-calendar.js"
+        script.src = scriptName
         script.async = true
         script.defer = true
         document.body.appendChild(script)
+    }
+
+    const ClearScripts = () => {
+        Array.from(document.getElementsByTagName('script')).forEach(elem => elem.remove())
+    }
+
+    useEffect(() => {
+        ClearScripts()
+        AttachScript("create-sessions-calendar.js")
     }, [])
 
     return (

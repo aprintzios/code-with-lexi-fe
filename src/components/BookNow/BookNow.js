@@ -16,16 +16,24 @@ export default function BookNow(props) {
         })
     }
 
+    const AttachScript = (scriptName) => {
+        const script = document.createElement("script")
+        script.src = scriptName
+        script.async = true
+        script.defer = true
+        document.body.appendChild(script)
+    }
+
+    const ClearScripts = () => {
+        Array.from(document.getElementsByTagName('script')).forEach(elem => elem.remove())
+    }
+
     useEffect(() => {
         async function fetchSessions() {
             let res = await axios.get("/api/sessions/available");
             setSessions(await res.data);
-            Array.from(document.getElementsByTagName('script')).forEach(elem => elem.remove())
-            const script = document.createElement("script")
-            script.src = "booking-calendar.js"
-            script.async = true
-            script.defer = true
-            document.body.appendChild(script)
+            ClearScripts()
+            AttachScript("booking-calendar.js")
         }
         fetchSessions();
     }, [])

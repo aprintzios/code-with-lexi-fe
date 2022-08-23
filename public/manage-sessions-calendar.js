@@ -1,20 +1,23 @@
 scriptAxios = document.createElement('script')
 scriptAxios.src = "https://unpkg.com/axios/dist/axios.min.js"
 document.body.appendChild(scriptAxios)
-
 // grab elements
 bookedSessions = JSON.parse(document.getElementById("bookedSessions").value)
 availableSessions = JSON.parse(document.getElementById("availableSessions").value)
 sessions = [bookedSessions, availableSessions].flat(Infinity)
 createBtnDiv = document.getElementById("createBtnDiv")
 createBtn = document.getElementById("createBtn")
+deleteSessionButton = document.getElementById('deleteSessionButton')
 jwt = document.getElementById("jwt").value
-console.log(jwt)
+
 
 // main functionality
 function deleteSession(sessionId) {
     axios.delete(`/api/sessions/delete?sessionId=${sessionId}&token=${jwt}`)
     document.getElementById(sessionId).remove()
+    availableSessions = availableSessions.filter(session => session._id !== sessionId)
+    sessions = [bookedSessions, availableSessions].flat(Infinity)
+    getAvailableDates(renderCalendar)
 }
 
 function getCalendarDayDivs() {
@@ -81,6 +84,12 @@ function renderTimes(calendarObj, selectedDate) {
             else {
                 timeChildDiv.style.backgroundColor = "white"
                 timeChildDiv.style.color = "magenta"
+
+                //experiment
+                timeChildDiv.style.display = "flex"
+                timeChildDiv.style.gap = "20px"
+                timeChildDiv.style.justifyContent = "center"
+
                 timeChildDiv.id = session._id
                 timeChildDiv.innerHTML = session.time
                 addDeleteFunctionality(timeChildDiv, session)

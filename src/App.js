@@ -24,12 +24,21 @@ import React from 'react';
 import BookNow from './components/BookNow/BookNow';
 import ManageSessions from './components/ManageSessions/ManageSessions';
 import CreateSessions from './components/CreateSessions/CreateSessions';
+import { ContactForm } from './components/Contact/Contact';
 
 export default class App extends React.Component {
 
   state = {
     user: null,
     isLoggedIn: false
+  }
+
+  AttachScript(scriptName){
+    const script = document.createElement("script")
+    script.src = scriptName
+    // script.async = true
+    script.defer = true
+    document.body.appendChild(script)
   }
 
   setUserInState = (incomingUserData) => {
@@ -56,6 +65,7 @@ export default class App extends React.Component {
     }
   }
 
+
   componentDidMount = () => {
     this.grabUserData();
   }
@@ -73,6 +83,7 @@ export default class App extends React.Component {
               <InfoRight id={'beInfo'} pic={beInfo} user={this.state.user} content={beContent} btn={'Book Now'} />
               <InfoLeft id={'csInfo'} pic={csInfo} user={this.state.user} content={csContent} />
               <About id='about' pic={aboutPic} content={aboutContent} user={this.state.user} btn={'Contact Me'} bgColor={'#FAE6FF'} />
+              <ContactForm></ContactForm>
             </div>
           } />
 

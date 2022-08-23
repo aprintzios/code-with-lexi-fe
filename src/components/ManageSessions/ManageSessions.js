@@ -8,11 +8,22 @@ export default function ManageSessions(props) {
     const [date, setDate] = useState(new Date());
     const [bookedSessions, setBookedSessions] = useState([]);
     const [availableSessions, setAvailableSessions] = useState([]);
-    const [submit, setSubmit] = useState(false);
     const [jwt, setJWT] = useState("")
 
     const grabJWT = async () => {
         setJWT(localStorage.getItem('token'))
+    }
+
+    const AttachScript = (scriptName) => {
+        const script = document.createElement("script")
+        script.src = scriptName
+        script.async = true
+        script.defer = true
+        document.body.appendChild(script)
+    }
+
+    const ClearScripts = () => {
+        Array.from(document.getElementsByTagName('script')).forEach(elem => elem.remove())
     }
 
     useEffect(() => {
@@ -22,15 +33,11 @@ export default function ManageSessions(props) {
             setBookedSessions(await resBooked.data);
             setAvailableSessions(await resAvailable.data);
             grabJWT()
-            Array.from(document.getElementsByTagName('script')).forEach(elem => elem.remove())
-            const script = document.createElement("script")
-            script.src = "manage-sessions-calendar.js"
-            script.async = true
-            script.defer = true
-            document.body.appendChild(script)
+            ClearScripts()
+            AttachScript("manage-sessions-calendar.js")
         }
         fetchSessions();
-    }, [submit])
+    }, [])
 
     return (
         <div className="createSessions">
