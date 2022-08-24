@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import './Contact.css'
+import contactHeader from '../../images/contactHeader.png'
+
 
 export const ContactForm = () => {
 
@@ -22,26 +24,29 @@ export const ContactForm = () => {
   }, [])
 
   return (
-      <div id="contactWrapper"> 
-          <div id="contactLeft">
-            <div>
-                <label htmlFor="name">Name:</label>
-                <input type="text" id="name" required />
-            </div>
-            <div>
-                <label htmlFor="user_email">Email:</label>
-                <input type="email" id="user_email" required />
-            </div>
-            <div>
-                <label htmlFor="subject">Subject:</label>
-                <textarea id="subject" required />
-            </div>
-            <div>
-                <label htmlFor="message">Message:</label>
-                <textarea id="message" required />
-            </div>
-            <button id="submitBtn">Submit</button>
+    <div id="contactWrapper">
+      <div id="subWrapper">
+        <div>
+          <img id="contactHeader" src={contactHeader}></img>
         </div>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" required />
+        </div>
+        <div>
+          <label htmlFor="user_email">Email:</label>
+          <input type="email" id="user_email" required />
+        </div>
+        <div>
+          <label htmlFor="subject">Subject:</label>
+          <textarea id="subject" required />
+        </div>
+        <div>
+          <label htmlFor="message">Message:</label>
+          <textarea id="message" required />
+        </div>
+        <button id="submitBtn">Submit</button>
+      </div>
     </div>
   );
 };

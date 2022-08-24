@@ -35,9 +35,26 @@
   
 
 
+  #contactWrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+} 
+
+#subWrapper{
+  width: 90vw;
+  border: 1px solid black;
+}
+
+#contactHeader{
+  width: 40vw;
+}
+
+
 /* mobile */
 @media only screen and (max-width: 768px) {
-    #contactRight{
+    /* #contactRight{
         display: none;
     }
     #contactLeft{
@@ -47,21 +64,21 @@
         align-items: center;
         padding: 2rem;
         margin: 4rem 0 4rem 0;
-    }
+    } */
 }
 
 /* desktop */
 @media only screen and (min-width: 768px) {
-    #contactWrapper{
+    /* #contactWrapper{
        display: flex;
-       justify-content: space-around;
+       justify-content: center;
        margin-top: 4rem;
-   } 
-   #contactRight{
+   }  */
+   /* #contactLeft{
        display: flex;
        flex-direction: column;
        justify-content: center;
        align-items: center;
        padding: 2rem;
-   }
+   } */
 }
