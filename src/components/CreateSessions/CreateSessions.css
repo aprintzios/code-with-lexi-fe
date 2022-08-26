@@ -1,22 +1,60 @@
-#calWrapper{
+/* button */
+.button-13 {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Amazon Ember", sans-serif;
+    font-size: 13px;
+    line-height: 29px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    /* width: 100px; */
+}
+
+.button-13:hover {
+    background-color: #f7fafa;
+}
+
+.button-13:focus {
+    border-color: #008296;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    outline: 0;
+}
+
+/*button end*/
+
+
+
+#calWrapper {
     display: none;
     justify-content: center;
     gap: 10vw;
     margin-top: 12vh;
     margin-left: 22vw;
     margin-right: 22vw;
-    margin-bottom: 10vh;
-  }
-  
-#calDiv, #timeDiv{
+}
+
+#calDiv,
+#timeDiv {
     width: 30vw;
 }
 
 #timeDiv {
-    overflow-y:auto;
+    overflow-y: auto;
     height: 50vh;
 }
-  
+
 #timeDiv div {
     border: 1px solid black;
     border-radius: 10px;
@@ -24,29 +62,64 @@
     margin: 10px;
     color: magenta
 }
-  
+
 #timeDiv div:hover {
     background-color: pink;
     color: black;
     cursor: pointer;
 }
-  
+
 #calDiv {
     display: flex;
     justify-content: end;
 }
-  
+
 .bookNow {
     display: flex;
     flex-direction: column;
     gap: 12vh;
 }
-  
+
 #bookBtnDiv {
     display: none;
 }
-  
+
 #bookNowBtn {
     color: magenta;
     text-align: center;
+}
+
+#createOverlay {
+    position: fixed;
+    /* Sit on top of the page content */
+    display: block;
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255, 255, 255);
+    /* White background */
+    z-index: 3;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}
+
+#createOverlayImg {
+    margin-top: 10vh;
+    width: 20vw;
+}
+
+#exitCreateOverlay {
+    position: absolute;
+    top: 55%;
+    left: 55%;
+    font-size: 20px;
+    color: rgb(255, 203, 229);
+    transform: translate(-100%, 350%);
+    -ms-transform: translate(-50%, -50%);
 }

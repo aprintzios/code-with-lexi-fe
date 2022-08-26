@@ -44,31 +44,31 @@ export default function Navbar(props) {
                 <div className="menu-items" style={{transform: transform ? "translateY(0%)" : "translateY(-150%)" }}>
                     {window.location.pathname == '/' ?
                     <>
-                        <li><ScrollLink onClick={closeMenu} to='tutoring' smooth={true} duration={500}>Tutoring</ScrollLink></li>
-                        <li><ScrollLink onClick={closeMenu} to='about' smooth={true} duration={500}>About</ScrollLink></li>
-                        <li><ScrollLink onClick={closeMenu} to='tutoring' smooth={true} duration={500}>Contact</ScrollLink></li>
+                        <li><ScrollLink className="navLink" onClick={closeMenu} to='tutoring' smooth={true} duration={500}>Tutoring</ScrollLink></li>
+                        <li><ScrollLink className="navLink" onClick={closeMenu} to='about' smooth={true} duration={500}>About</ScrollLink></li>
+                        <li><ScrollLink className="navLink" onClick={closeMenu} to='contact' smooth={true} duration={500}>Contact</ScrollLink></li>
                     </>
                     : 
-                        <Link to='/'>Home</Link>
+                        <Link className="navLink" to='/'>Home</Link>
                     }
                     {props.user ?                     
-                        <li><Link onClick={closeMenu} to='/book'>Book Now</Link></li>
+                        <li><Link className="navLink" onClick={closeMenu} to='/book'>Book Now</Link></li>
                     :
-                        <li><Link onClick={closeMenu} to='/login'>Book Now</Link></li>
+                        <li><Link className="navLink" onClick={closeMenu} to='/login'>Book Now</Link></li>
                     }
                     {props.user && props.user.isAdmin ?
                         <>
-                            <li><Link onClick={closeMenu} to='/manage'>Manage Sessions</Link></li>
-                            <li><Link onClick={closeMenu} to='/create'>Create Sessions</Link></li>
+                            <li><Link className="navLink" onClick={closeMenu} to='/manage'>Manage Sessions</Link></li>
+                            <li><Link className="navLink" onClick={closeMenu} to='/create'>Create Sessions</Link></li>
                         </>
                         :
                         <></>
                     }
                     {props.user ?
                         // <li><button onClick={handleLogOutRedirect}>Logout</button></li>
-                        <li><Link onClick={() => {closeMenu(); handleLogOutRedirect()}} to='/'>Logout</Link></li>
+                        <li><Link className="navLink" onClick={() => {closeMenu(); handleLogOutRedirect()}} to='/'>Logout</Link></li>
                         :
-                        <li><Link onClick={closeMenu} to='/login'>Login/Signup</Link></li>
+                        <li><Link className="navLink" onClick={closeMenu} to='/login'>Login/Signup</Link></li>
                     }
 
                 </div>

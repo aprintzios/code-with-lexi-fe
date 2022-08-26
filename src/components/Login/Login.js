@@ -34,7 +34,7 @@ export default function Login(props) {
     <div className="login">
       <div id='formWrapper'>
         <img src="login.png"></img>
-        <form onSubmit={loginHandler}>
+        <form id="loginForm" onSubmit={loginHandler}>
           <Form.Group>
             <Form.Label>Email Address: </Form.Label>
             <Form.Control
@@ -49,13 +49,14 @@ export default function Login(props) {
               type="password"
               onChange={changeHandler}
             ></Form.Control>
+            <div id="formSep"></div>
           <button className="button-13" role="button"> Login </button>
           </Form.Group>
         </form>
 
         {/* <h4>{props.message}</h4> */}
         <div>Need an account? <Link to="/signup">Sign up</Link></div>
-        </div>
+      </div>
       <div className="loginImg">
         <img src="compRight.png" alt="" />
       </div>

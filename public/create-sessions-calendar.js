@@ -44,37 +44,30 @@ function styleDayDivs (days) {
             day.style.backgroundColor = "#c8a2c8"  
         }
     })
-    selectedRangeAction(days)
+    selectedDateAction(days)
 }
 
-function selectedRangeAction(days) {
-    let selectedDates = []
+function selectedDateAction(days) {
+    let selectedDate
     let selectedTimes = []
     days.forEach(day => day.addEventListener('click', (evt) => {
+        if (evt.target.children[0]) {
+            selectedDate = new Date(evt.target.children[0].ariaLabel)
+        } else {
+            selectedDate = new Date(evt.target.ariaLabel)
+        }
         days.forEach(day => day.style.backgroundColor = "white")
         day.style.backgroundColor = "#c8a2c8"
-        if (evt.target.children[0]) {
-            selectedDates.push(new Date(evt.target.children[0].ariaLabel))
-        } else {
-            selectedDates.push(new Date(evt.target.ariaLabel))
-        }
-        selectedDates = selectedDates.sort()
-        if (selectedDates.length == 2) {
-            let dateArray = getDates(selectedDates[0], selectedDates[1]).map(date => date.toString().substring(4, 15))
-            restyleCalendar(days, dateArray)
-            selectedTimes = renderTimes(dateArray, selectedTimes)
-        } else if (selectedDates.length > 2) {
-            selectedDates = []
-            selectedTimes = []
-        }
-    }))
+        selectedTimes = renderTimes(selectedDate, selectedTimes)
+        } 
+    ))
 }
 
-function createSessions(dateArray, selectedTimes) {
-    createBtn.value = JSON.stringify([dateArray, selectedTimes])
+function createSessions(selectedDate, selectedTimes) {
+    createBtn.value = JSON.stringify([selectedDate, selectedTimes])
 }
 
-function renderTimes(dateArray, selectedTimes) {
+function renderTimes(selectedDate, selectedTimes) {
     timeDiv.innerHTML = ""
     times.forEach(time => {
         let timeChildDiv = document.createElement('div')
@@ -86,18 +79,10 @@ function renderTimes(dateArray, selectedTimes) {
             child.style.backgroundColor = "pink"
             child.style.color = "black"
             selectedTimes.push(child.innerHTML)
-            createSessions(dateArray, selectedTimes)
+            createSessions(selectedDate, selectedTimes)
         })
     })
     return selectedTimes
-}
-
-function restyleCalendar(days, dateArray) {
-    days.forEach(day => {
-        if (dateArray.includes(new Date(day.children[0].ariaLabel).toString().substring(4, 15))) {
-            day.style.backgroundColor = "#c8a2c8"
-        }
-    })
 }
 
 function renderCalendar() {

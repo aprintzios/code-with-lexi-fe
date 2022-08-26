@@ -83,7 +83,7 @@ export default class App extends React.Component {
               <InfoRight id={'beInfo'} pic={beInfo} user={this.state.user} content={beContent} btn={'Book Now'} />
               <InfoLeft id={'csInfo'} pic={csInfo} user={this.state.user} content={csContent} />
               <About id='about' pic={aboutPic} content={aboutContent} user={this.state.user} btn={'Contact Me'} bgColor={'#FAE6FF'} />
-              <ContactForm></ContactForm>
+              <ContactForm id='contact' />
             </div>
           } />
 

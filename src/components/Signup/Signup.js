@@ -37,7 +37,7 @@ export default function Signup(props) {
             </div>
                 <div id='formWrapper'>
                     <img src="signup.png"></img>
-                    <form onSubmit={signupHandler}>
+                    <form id="signupForm" onSubmit={signupHandler}>
                         <Form.Group>
                             <Form.Label>Name: </Form.Label>
                             <Form.Control

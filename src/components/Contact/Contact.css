@@ -44,14 +44,52 @@
 
 #subWrapper{
   width: 90vw;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  padding-bottom: 5vh;
+}
+
+#headerWrapper{
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  align-items: center;
 }
 
 #contactHeader{
   width: 40vw;
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+#contactLine{
+  background: black;
+  color: black;
+  border-color: black;
+  height: 1px;
+  width: 50vw;
 }
 
 
+#formWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4vh;
+}
+
+.formInput{
+  width: 20vw;
+  height: 1.5rem;
+}
+.formMessage{
+  width: 40vw;
+  height: 5rem;
+}
 /* mobile */
 @media only screen and (max-width: 768px) {
     /* #contactRight{

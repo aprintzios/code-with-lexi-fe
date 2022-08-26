@@ -34,7 +34,13 @@
   /*button end*/
   
 
-
+  #signupForm{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5vh;
+  }
 
 /* mobile */
 @media only screen and (max-width: 768px) {
