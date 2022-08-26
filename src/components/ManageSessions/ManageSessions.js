@@ -55,6 +55,13 @@ export default function ManageSessions(props) {
                     <div id="bookedTimeDiv"></div>
                 </div>
             </div>
+            <div className="currentlyBookedSessions">
+                <h1>Booked Sessions</h1>
+                {bookedSessions.map(bookedSession => (
+                    <div>{bookedSession.date.toString().substring(0,10)} @ {bookedSession.time} with {bookedSession.user?.name} ({bookedSession.user?.email})</div>
+                ))}
+               
+            </div>
             <div>
                 <input type='hidden' id="bookedSessions" value={JSON.stringify(bookedSessions)} />
                 <input type='hidden' id="availableSessions" value={JSON.stringify(availableSessions)} />

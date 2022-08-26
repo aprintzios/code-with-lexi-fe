@@ -25,7 +25,7 @@ export default function BookNow(props) {
         setPayVisible(true)
     }
 
-    const exitOverlayHandler = ()=>{
+    const exitOverlayHandler = () => {
         setOverlayVisible(true)
         navigate('/')
     }
@@ -56,28 +56,27 @@ export default function BookNow(props) {
     let overlayDisplay = overlayVisible ? "block" : "none"
     let calDisplay = calVisible ? "block" : "none"
 
-
     return (
 
         <div className="bookNow">
-            
+
             <div id="calWrapper" style={{ display: calDisplay }}>
-            
+
                 <div id="calDiv">
                     <div id="calendar"><Calendar onChange={setDate} value={date} /></div>
                     <input id="calendar-value" type="hidden" value={date} />
                 </div>
-            
+
                 <div id="timeDiv">
                     Choose a date..
                 </div>
-            
+
             </div>
-            
+
             <div id='bookBtnDiv'>
                 <button id="bookNowBtn" style={{ display: calDisplay }} className="button-13" onClick={bookNowHandler} role="button"> Continue </button>
             </div>
-            
+
             <div>
                 <input type='hidden' id="sessions" value={JSON.stringify(sessions)} />
             </div>
@@ -102,8 +101,7 @@ export default function BookNow(props) {
                             });
                         }}
                         onApprove={(data, actions) => {
-                            return actions.order.capture().then((details) => {
-                                const name = details.payer.name.given_name;
+                            return actions.order.capture().then(async (details) => {
                                 setPayVisible(false)
                                 setOverlayVisible(true)
                             });
@@ -114,9 +112,9 @@ export default function BookNow(props) {
 
             <div id="successOverlay" style={{ display: overlayDisplay }}>
                 <img id="overlayImg" src={successImg} alt="You're booked!" />
-                <button id="exitOverlay" class="button-13" onClick={exitOverlayHandler}>Great!</button>
+                <button id="exitOverlay" className="button-13" onClick={exitOverlayHandler}>Great!</button>
             </div>
-            
+
         </div>
     );
 }
